@@ -35,10 +35,12 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSetIntensiv = new System.Windows.Forms.Button();
+            this.dataGridViewRezult = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRezult)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -47,19 +49,22 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 21);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 17);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(764, 183);
+            this.dataGridView1.Size = new System.Drawing.Size(573, 149);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 49);
+            this.groupBox1.Location = new System.Drawing.Point(9, 40);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 210);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(582, 171);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Матрица интенсивности переходов";
@@ -67,25 +72,28 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(6, 21);
+            this.listBox1.Location = new System.Drawing.Point(4, 17);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(752, 132);
+            this.listBox1.Size = new System.Drawing.Size(565, 82);
             this.listBox1.TabIndex = 7;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.listBox1);
-            this.groupBox2.Location = new System.Drawing.Point(18, 265);
+            this.groupBox2.Location = new System.Drawing.Point(14, 215);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(764, 186);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(573, 110);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Уравнения Колмогорова";
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(189, 12);
+            this.numericUpDown1.Location = new System.Drawing.Point(142, 10);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10,
             0,
@@ -97,7 +105,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(167, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(125, 20);
             this.numericUpDown1.TabIndex = 9;
             this.numericUpDown1.Value = new decimal(new int[] {
             3,
@@ -109,32 +117,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 14);
+            this.label1.Location = new System.Drawing.Point(20, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 16);
+            this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Количество состояний";
             // 
             // buttonSetIntensiv
             // 
-            this.buttonSetIntensiv.Location = new System.Drawing.Point(616, 14);
+            this.buttonSetIntensiv.Location = new System.Drawing.Point(462, 11);
+            this.buttonSetIntensiv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSetIntensiv.Name = "buttonSetIntensiv";
-            this.buttonSetIntensiv.Size = new System.Drawing.Size(166, 33);
+            this.buttonSetIntensiv.Size = new System.Drawing.Size(124, 27);
             this.buttonSetIntensiv.TabIndex = 11;
             this.buttonSetIntensiv.Text = "Задать интенсивность";
             this.buttonSetIntensiv.UseVisualStyleBackColor = true;
             this.buttonSetIntensiv.Click += new System.EventHandler(this.buttonSetIntensiv_Click);
             // 
+            // dataGridViewRezult
+            // 
+            this.dataGridViewRezult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRezult.Location = new System.Drawing.Point(14, 330);
+            this.dataGridViewRezult.Name = "dataGridViewRezult";
+            this.dataGridViewRezult.Size = new System.Drawing.Size(569, 90);
+            this.dataGridViewRezult.TabIndex = 12;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 532);
+            this.ClientSize = new System.Drawing.Size(600, 432);
+            this.Controls.Add(this.dataGridViewRezult);
             this.Controls.Add(this.buttonSetIntensiv);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -142,6 +162,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRezult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +177,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonSetIntensiv;
+        private System.Windows.Forms.DataGridView dataGridViewRezult;
     }
 }
 

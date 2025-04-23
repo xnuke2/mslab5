@@ -102,7 +102,7 @@ namespace mslab5
                 NextStep(dt);
                 double[] arr = new double[Y.Length + 1];
                 Y.CopyTo(arr, 1);
-                arr[0] = t;
+                arr[0] = t-dt;
                 rez.Add(arr);
 
             }

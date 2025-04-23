@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace mslab5
 {
@@ -39,6 +40,9 @@ namespace mslab5
 
         private void buttonSetIntensiv_Click(object sender, EventArgs e)
         {
+            for(int i = 0;i<charts.Count;i++)
+                charts[i].Dispose();
+            charts.Clear();
             listBox1.Items.Clear();
             dataGridViewRezult.Rows.Clear();
             dataGridViewRezult.Columns.Clear();
@@ -50,25 +54,24 @@ namespace mslab5
                 List<Point>[] vals = new List<Point>[dataGridView1.RowCount];
                 for (int i = 0; i < vals.Length; i++)
                     vals[i] = new List<Point>();
-                yr = "";
+                
                 for (int rowIndex = 0; rowIndex < dataGridView1.RowCount; rowIndex++)
                         if (Convert.ToString(dataGridView1[ yrIndex+1, rowIndex].Value) != "")
                         {
-                            yr += Convert.ToString(dataGridView1[yrIndex + 1, rowIndex].Value) + "*S" + (rowIndex + 1) + "+";
                             vals[rowIndex].Add(new Point(yrIndex + 1, rowIndex));
                         }
-                            
-                if(yr!="")
-                    yr =yr.Remove(yr.Length-1);
+
+
+                    
                 
                 for (int columnsIndex = 0; columnsIndex < dataGridView1.Rows.Count; columnsIndex++)
                     if (yrIndex != columnsIndex)
                         if (Convert.ToString(dataGridView1[columnsIndex+1, yrIndex].Value) != "")
                         {
                             vals[yrIndex].Add(new Point(columnsIndex + 1, yrIndex));
-                            yr += "-" + Convert.ToString(dataGridView1[columnsIndex + 1, yrIndex].Value) + "*S" + (yrIndex + 1);
 
                         }
+
                 double[] ratio = new double[vals.Length];
                 ratio[0] = 0;
 
@@ -86,7 +89,20 @@ namespace mslab5
                         }
                     
                 }
-
+                
+                yr = "";
+                for(int i =0; i < ratio.Length;i++)
+                    if(ratio[i]>0)
+                        yr+= "+"+ratio[i]+"*S"+(i+1);
+                    else if (ratio[i]<0)
+                        yr += ratio[i] + "*S" + (i + 1);
+                if (yr[0]=='+')
+                    yr =yr.Remove(0,1);
+                if (yr == "")
+                {
+                    MessageBox.Show("В строке " + (yrIndex + 1) + " отсутсвует значение");
+                    return;
+                }
 
                 funcs[yrIndex] = Yvals =>
                 {
@@ -105,26 +121,37 @@ namespace mslab5
             initial[0] = 1;
             RungeKutta rungeKutta = new RungeKutta(initial, funcs);
             var tmp = rungeKutta.Solve(10,0.1);
-            var last = tmp[tmp.Count-1];
-            double check = 0;
-            for(int j = 1; j < last.Length; j++)
-            {
-                //last[j] = Math.Round(last[j], 5);
-                check += last[j];
-            }
             for (int i = 0; i < matrix[0].Length; i++)
                 matrix[0][i] = 1;
             SLAY sLAY = new SLAY(matrix);
             var res = sLAY.Find();
-            dataGridViewRezult.Columns.Add("name", "Название");
-            for (int i=1;i<last.Length;i++)
+            for (int i=0;i< res[res.Length - 1][0].Length;i++)
                 dataGridViewRezult.Columns.Add("X" +(i+1), "X" + (i+1));
             dataGridViewRezult.Rows.Add("Гаусс");
-            for (int i = 1; i < last.Length; i++)
-                dataGridViewRezult[i,0].Value = res[res.Length-1][0][i-1];
-            dataGridViewRezult.Rows.Add("Ранге Кутты");
-            for (int i = 1; i < last.Length; i++)
-                dataGridViewRezult[i, 1].Value = last[i];
+            for (int i = 1; i < res[res.Length - 1][0].Length+1; i++)
+                dataGridViewRezult[i-1,0].Value = res[res.Length-1][0][i-1];
+            int x = 0;
+            int y = 0;
+            for (int i = 0;i<listBox1.Items.Count;i++)
+            {
+                Chart chart2 = new Chart();
+                chart2.Series.Add("P"+(i+1));
+                chart2.Size = new Size(300, 250);
+                chart2.Location = new Point(x, y);
+                chart2.ChartAreas.Add(new ChartArea(""));
+                chart2.Legends.Add("");
+                chart2.Series[0].IsXValueIndexed = true;
+                chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                chart2.Titles.Add("Уравнение"+(i+1));
+                for(int j = 0; j < tmp.Count; j++)
+                    chart2.Series[0].Points.AddXY(Math.Round( tmp[j][0],3), Math.Round(tmp[j][i+1], 3));
+                panel1.Controls.Add(chart2);
+                chart2.Visible = true;
+                x += 305;
+                charts.Add(chart2);
+            }
+
         }
+        List<Chart>charts = new List<Chart>();
     }
 }
